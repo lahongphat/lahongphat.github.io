@@ -18,10 +18,10 @@ function sendEmail()
 {
 		hideContactConfirmationContainer(); //function from main.js
 		positionContactConfirmationContainer(); //function from main.js
-									
+
 		var isSubjectFilled;
 		var isMessageFilled;
-								  
+
 		var emailAddress = $("#email-address").val();
 		var emailSubject = $("#email-subject").val();
 		var emailMessage = $("#email-message").val();
@@ -38,27 +38,27 @@ function sendEmail()
 				isMessageFilled = false;
 				focusMessage(); //function from main.js
 			}
-			
+
 			if (emailMessage.length >= 1)
 			{
 				isMessageFilled = true;
 			}
-			
+
 			if (emailSubject.length < 1)
 			{
 				isSubjectFilled = false;
 				focusSubject(); //function from main.js
 			}
-			
+
 			if (emailSubject.length >= 1)
 			{
 				isSubjectFilled = true;
 			}
-		
+
 			if ((isSubjectFilled == true) && (isMessageFilled == true))
 			{
 				setTimeout("showContactConfirmationContainer(2)",200); //function from main.js, setTimeout for ie since its focus is late
-				emailMessage = emailMessage.replace(/\n/g,"%0A")
+				emailMessage = encodeURI(emailMessage).replace(/\n/g,"%0A")
 				setTimeout("send('"+emailAddress+"','"+emailSubject+"','"+emailMessage+"')",2000);
 			}
 			else
@@ -66,7 +66,7 @@ function sendEmail()
 				setTimeout("showContactConfirmationContainer(1)",200); //function from main.js, setTimeout for ie since its focus is late
 			}
 		}
-		
+
 		return false;
 }
 
@@ -75,5 +75,5 @@ function send(emailAddress,emailSubject,emailMessage){
 	hideContactConfirmationContainer(); //function from main.js
 	positionContactConfirmationContainer(); //function from main.js
 	setTimeout("showContactConfirmationContainer(4)",200); //function from main.js, setTimeout for ie since its focus is late
-	clearAllInputField(); 
+	clearAllInputField();
 }
