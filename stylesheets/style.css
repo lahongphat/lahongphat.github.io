@@ -923,12 +923,14 @@ body {
 }
 
 #experience-text-container-1 {
+	margin-bottom: -60px;
 	left: -160px;
 	width: 600px;
 }
 
 #experience-text-container-3 {
 	width: 650px;
+	margin-bottom: -157px;
 	left: -119px;
 }
 
